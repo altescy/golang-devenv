@@ -75,7 +75,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/altescy/golang-devenv/mast
 
 Initialize project via:
 ```
-$ make docker    # on local: make
+$ make docker-init    # on local: make init
 ```
 
 All requirements are installed:
