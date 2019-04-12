@@ -8,14 +8,14 @@ DEP_CMD           = ${DIR}/bin/dep
 DOCKER_IMAGE_NAME = golang-dev
 
 
-all: build
+all: deps build
 
 .PHONY: clean
 clean:
 	rm -rf $(BINARY_NAME)
 
 init:
-	mkdir -p ${DIR}/bin
+	mkdir -p ${DIR}/bin ${DIR}/${APP_DIR}
 	curl https://raw.githubusercontent.com/golang/dep/master/install.sh | GOPATH=${DIR} DEP_RELEASE_TAG=${DEP_VERSION} sh
 	cd ${DIR}/${APP_DIR}; if [ ! -f ${DIR}/${APP_DIR}/Gopkg.toml ]; then GOPATH=${DIR} ${DEP_CMD} init; fi
 
