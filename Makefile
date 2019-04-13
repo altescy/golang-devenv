@@ -40,8 +40,8 @@ docker: docker-deps docker-build
 
 docker-init:
 	docker build -t ${DOCKER_IMAGE_NAME} --build-arg DEP_VERSION=${DEP_VERSION} ${DIR}
-	docker run --rm -v "${DIR}":/go ${DOCKER_IMAGE_NAME} sh -c "mkdir -p ${APP_DIR}; cd ${APP_DIR}; dep init"
-	chown $USER src
+	mkdir -p ${DIR}/${APP_DIR}
+	docker run --rm -v "${DIR}":/go ${DOCKER_IMAGE_NAME} sh -c "cd ${APP_DIR}; dep init"
 
 docker-deps:
 	docker run --rm -v "${DIR}":/go ${DOCKER_IMAGE_NAME} sh -c "cd ${APP_DIR}; dep ensure"
